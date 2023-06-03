@@ -1,12 +1,18 @@
 const express = require("express");
 const router = express.Router();
 
+// ProdcutDummy
 const {
-  getDataProduct,
-  getDataProductById,
-} = require("../Controllers/ProductController");
+  getDataProduct: getDataProductDummy,
+  getDataProductById: getDataProductByIdDummy,
+} = require("../Controllers/ProductDummyController");
+router.get("/dataproduct", getDataProductDummy);
+router.get("/dataproductbyid/:idparam", getDataProductByIdDummy);
+// End ProductDummy
 
-router.get("/dataproduct", getDataProduct);
-router.get("/dataproductbyid/:idparam", getDataProductById);
+// Product
+const { addDataProduct } = require("../Controllers/ProductController");
+router.post("/adddataproduct", addDataProduct);
+// End Product
 
 module.exports = router;

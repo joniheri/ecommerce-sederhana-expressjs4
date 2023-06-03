@@ -1,39 +1,45 @@
-const dataProduct = [
-  {
-    id: 1,
-    product: "Ice Capucino",
-    price: 15000,
-  },
-  {
-    id: 2,
-    product: "Ice Cream",
-    price: 20000,
-  },
-];
+const { TbProduct } = require("../models");
 
-exports.getDataProduct = (req, res) => {
-  return res.send({
-    response: "success",
-    message: "Get Data Product Success",
-    data: dataProduct,
-  });
-};
+exports.addDataProduct = async (req, res) => {
+  try {
+    const dataInput = req.body;
 
-exports.getDataProductById = (req, res) => {
-  const { idparam } = req.params;
-  const dataProductById = dataProduct.find((item) => item.id == idparam);
-  if (!dataProductById) {
-    return res.status(400).send({
+    // ValidationInput
+    // End ValidationInput
+
+    // CheckIdAlreadyExist
+    // End CheckIdAlreadyExist
+
+    // iniProcessInsertKeDatabase
+    const porcessInsertData = await TbProduct.create({
+      id: dataInput.id,
+      productName: dataInput.productName,
+      price: dataInput.price,
+      qty: dataInput.qty,
+    });
+    // End iniProcessInsertKeDatabase
+
+    // CekKalauInsertGagal
+    if (!porcessInsertData) {
+      return res.status(4001).send({
+        response: "fail",
+        message: "Add Data Fail",
+      });
+    }
+    // CekKalauInsertGagal
+
+    // ProcessSuccess
+    return res.send({
+      response: "success",
+      message: "Add Data Success",
+      dataInput: porcessInsertData,
+    });
+    // ProcessSuccess
+  } catch (error) {
+    console.log(error);
+    return res.send({
       response: "fail",
-      message: `Get Data Product with id: ${idparam} Fail!`,
-      idparams: idparam,
-      data: null,
+      message: "Error Catch",
     });
   }
-  return res.send({
-    response: "success",
-    message: "Get Data Product Success",
-    idparams: idparam,
-    data: dataProductById,
-  });
 };
