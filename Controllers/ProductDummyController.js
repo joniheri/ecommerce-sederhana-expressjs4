@@ -24,7 +24,7 @@ exports.getDataProduct = (req, res) => {
   });
 };
 
-exports.getDataProductById = (req, res) => {
+exports.getDataProductDummyById = (req, res) => {
   const { idparam } = req.params;
   const dataProductById = dataProductDummy.find((item) => item.id == idparam);
   if (!dataProductById) {
