@@ -11,7 +11,7 @@ app.listen(port, () => {
 });
 
 app.get("/api/testing", (req, res) => {
-  res.send("Hello World!, Jon Heri Bootcamp lkasjdj lkajsfdlaksjfd");
+  res.send("Hello World!, Ini Ecommerce Sederhana");
 });
 
 const RouterVersi1 = require("./Routes/RouterVersi1");

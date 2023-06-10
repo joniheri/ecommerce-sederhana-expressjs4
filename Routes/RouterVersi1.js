@@ -25,4 +25,26 @@ router.patch("/updatedataproduct/:idparam", updateDataProduct);
 router.delete("/deletedataproduct/:idparam", deleteDataProduct);
 // End Product
 
+// UserRouter
+const {
+  getUsers,
+  getUsersWithProfile,
+  getUsersWithContact,
+  getUsersWithProfileAndContact,
+} = require("../Controllers/UserController");
+router.get("/users", getUsers);
+router.get("/userswithprofile", getUsersWithProfile);
+router.get("/userswithcontact", getUsersWithContact);
+router.get("/users-with-profile-contact", getUsersWithProfileAndContact);
+// End UserRouter
+
+// ProfileRouter
+const {
+  getProfiles,
+  getProfilesWithUser,
+} = require("../Controllers/ProfileController");
+router.get("/profiles", getProfiles);
+router.get("/profileswithuser", getProfilesWithUser);
+// End ProfileRouter
+
 module.exports = router;
