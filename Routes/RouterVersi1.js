@@ -31,11 +31,13 @@ const {
   getUsersWithProfile,
   getUsersWithContact,
   getUsersWithProfileAndContact,
+  getUsersWithSkill,
 } = require("../Controllers/UserController");
 router.get("/users", getUsers);
 router.get("/userswithprofile", getUsersWithProfile);
 router.get("/userswithcontact", getUsersWithContact);
 router.get("/users-with-profile-contact", getUsersWithProfileAndContact);
+router.get("/users-with-skill", getUsersWithSkill);
 // End UserRouter
 
 // ProfileRouter
@@ -46,5 +48,14 @@ const {
 router.get("/profiles", getProfiles);
 router.get("/profileswithuser", getProfilesWithUser);
 // End ProfileRouter
+
+// ContactRouter
+const {
+  getContacts,
+  getContactsWithUser,
+} = require("../Controllers/ContactController");
+router.get("/contacts", getContacts);
+router.get("/contacts-with-user", getContactsWithUser);
+// End ContactRouter
 
 module.exports = router;

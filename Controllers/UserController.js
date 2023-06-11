@@ -2,6 +2,7 @@ const {
   User: ModelUser,
   Profile: ModelProfile,
   Contact: ModelContact,
+  Skill: ModelSkill,
 } = require("../models");
 
 // GetUsers
@@ -139,3 +140,27 @@ exports.getUsersWithProfileAndContact = async (req, res) => {
   }
 };
 // End GetUsersWithProfileAndContact
+
+// GetUsersWithSkill
+exports.getUsersWithSkill = async (req, res) => {
+  try {
+    const dataUsersWithSkill = await ModelUser.findAll({
+      include: {
+        model: ModelSkill,
+      },
+    });
+
+    return res.send({
+      response: "success",
+      message: "Get users with skil Success",
+      data: dataUsersWithSkill,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send({
+      response: "fail",
+      message: "Error Catch",
+    });
+  }
+};
+// End GetUsersWithSkill

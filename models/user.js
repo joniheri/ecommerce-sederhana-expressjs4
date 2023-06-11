@@ -14,6 +14,9 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "userId",
       });
       User.hasMany(models.Contact);
+      User.belongsToMany(models.Skill, {
+        through: models.UserSkill,
+      });
     }
   }
   User.init(
