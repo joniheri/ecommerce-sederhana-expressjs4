@@ -58,4 +58,9 @@ router.get("/contacts", getContacts);
 router.get("/contacts-with-user", getContactsWithUser);
 // End ContactRouter
 
+// AuthRouter
+const { register } = require("../Controllers/AuthController");
+router.post("/register", register);
+// End AuthRouter
+
 module.exports = router;
