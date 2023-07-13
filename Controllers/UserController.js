@@ -7,6 +7,7 @@ const {
 
 // GetUsers
 exports.getUsers = async (req, res) => {
+  console.log(req.user);
   try {
     const dataUsers = await ModelUser.findAll({
       attributes: {

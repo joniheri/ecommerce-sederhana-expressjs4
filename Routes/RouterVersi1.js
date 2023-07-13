@@ -1,6 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
+// AuthMiddleware
+const { middleware } = require("../middlewares/AuhtMiddleware");
+// End AuthMiddleware
+
 // ProdcutDummy
 const {
   getDataProduct: getDataProductDummy,
@@ -34,6 +38,7 @@ const {
   getUsersWithSkill,
 } = require("../Controllers/UserController");
 router.get("/users", getUsers);
+router.get("/users-middle", middleware, getUsers);
 router.get("/userswithprofile", getUsersWithProfile);
 router.get("/userswithcontact", getUsersWithContact);
 router.get("/users-with-profile-contact", getUsersWithProfileAndContact);
@@ -59,8 +64,9 @@ router.get("/contacts-with-user", getContactsWithUser);
 // End ContactRouter
 
 // AuthRouter
-const { register } = require("../Controllers/AuthController");
+const { register, login } = require("../Controllers/AuthController");
 router.post("/register", register);
+router.post("/login", login);
 // End AuthRouter
 
 module.exports = router;
