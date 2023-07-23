@@ -64,9 +64,14 @@ router.get("/contacts-with-user", getContactsWithUser);
 // End ContactRouter
 
 // AuthRouter
-const { register, login } = require("../Controllers/AuthController");
+const {
+  register,
+  login,
+  checkToken,
+} = require("../Controllers/AuthController");
 router.post("/register", register);
 router.post("/login", login);
+router.get("/check-token", middleware, checkToken);
 // End AuthRouter
 
 module.exports = router;

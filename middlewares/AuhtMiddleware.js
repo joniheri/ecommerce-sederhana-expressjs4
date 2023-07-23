@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 exports.middleware = async (req, res, next) => {
   try {
     const header = req.header("Authorization");
-    ("");
+
     if (!header) {
       return res.status(401).send({
         response: "fail",

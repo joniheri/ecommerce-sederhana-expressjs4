@@ -141,3 +141,36 @@ exports.login = async (req, res) => {
     });
   }
 };
+
+exports.checkToken = async (req, res) => {
+  try {
+    const decodeUser = req.user;
+
+    const dataUser = await UserModel.findOne({
+      where: {
+        id: decodeUser.id,
+      },
+      attributes: {
+        exclude: ["password", "createdAt", "updatedAt"],
+      },
+    });
+    if (!dataUser) {
+      return res.status(400).send({
+        response: "fail",
+        message: `User with ID: ${decodeUser.id} Not Found`,
+      });
+    }
+
+    return res.send({
+      response: "success",
+      message: `Check Token Success`,
+      user: dataUser,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send({
+      response: "fail",
+      message: "Error Catch",
+    });
+  }
+};
