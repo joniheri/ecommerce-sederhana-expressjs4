@@ -5,6 +5,10 @@ const router = express.Router();
 const { middleware } = require("../middlewares/AuhtMiddleware");
 // End AuthMiddleware
 
+// AppMiddleware
+const { upload } = require("../middlewares/AppMiddleware");
+// End AppMiddleware
+
 // ProdcutDummy
 const {
   getDataProduct: getDataProductDummy,
@@ -27,6 +31,26 @@ router.get("/dataproducts", getDataProducts);
 router.get("/dataproductbyid/:idparam", getDataProductById);
 router.patch("/updatedataproduct/:idparam", updateDataProduct);
 router.delete("/deletedataproduct/:idparam", deleteDataProduct);
+router.post(
+  "/addproduct-upload-single",
+  upload.single("thumbnail"),
+  (req, res) => {
+    return res.send({
+      response: "success",
+      message: "Upload Success",
+    });
+  }
+);
+router.post(
+  "/addproduct-upload-multi",
+  upload.array("files", 6),
+  (req, res) => {
+    return res.send({
+      response: "success",
+      message: "Upload Success",
+    });
+  }
+);
 // End Product
 
 // UserRouter
